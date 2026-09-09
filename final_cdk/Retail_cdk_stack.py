@@ -1534,8 +1534,8 @@ class RetailCdkStack(Stack):
         data_ingestion_function.add_environment("INDEX_NAME", f"visualproductsearchmod-{name_key}")
         data_ingestion_function.add_environment("BUCKET_NAME", s3_bucket_name)
         data_ingestion_function.add_environment("S3_PREFIX", "visualproductsearch")
-        data_ingestion_function.add_environment("CLAUDE_MODEL_ID", "us.anthropic.claude-3-7-sonnet-20250219-v1:0")
         data_ingestion_function.add_environment("chat_tool_model", self.chat_tool_model)
+        data_ingestion_function.add_environment("validate_llm_model_id", "us.amazon.nova-pro-v1:0")
 
 
         bucket.grant_read(data_ingestion_function)
