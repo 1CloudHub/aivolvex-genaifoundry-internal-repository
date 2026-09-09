@@ -808,12 +808,14 @@ def transcribe_audio():
             audio_base64 = base64.b64encode(audio_bytes).decode('utf-8')
         
         
-        # Create JSON response with base64 audio
+        # Create JSON response: text = bot reply, transcript = user speech
         response = {
             'audio': hh,
-            'session_id': session_id,
+            'audio_format': 'wav',
             'message': 'TTS response generated successfully',
-            'audio_format': 'wav'
+            'session_id': session_id,
+            'text': answer,
+            'transcript': result
         }
         # response.headers['X-Session-Id'] = session_id
         
@@ -848,7 +850,14 @@ def transcribe_audio():
         #     print(f"❌ Error cleaning up files: {e}")
         #     print(f"🔍 File cleanup error type: {type(e).__name__}")
         
-        return {"status": 200}
+        return {
+            "audio": hh,
+            "audio_format": "wav",
+            "message": "TTS response generated successfully",
+            "session_id": session_id,
+            "text": answer,
+            "transcript": result
+        }
     except Exception as e:
 
         print("❌ Error in /transcribe:", e)

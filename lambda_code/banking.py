@@ -2746,8 +2746,18 @@ VALUES(CURRENT_TIMESTAMP, %s, CURRENT_TIMESTAMP, %s, 0, 0, %s, %s, %s, %s, %s, %
             }
             print(payload)
             response = requests.request("POST", url, headers=headers, data=payload)
-
-            return response.text
+            try:
+                body = response.json()
+            except ValueError:
+                body = {"text": response.text}
+            return {
+                "audio": body.get("audio"),
+                "audio_format": body.get("audio_format", "wav"),
+                "message": body.get("message", "TTS response generated successfully"),
+                "session_id": body.get("session_id") or event.get("session_id"),
+                "text": body.get("text", ""),
+                "transcript": body.get("transcript", ""),
+            }
 
         except Exception as e:
             return {
