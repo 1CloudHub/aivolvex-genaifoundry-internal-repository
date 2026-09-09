@@ -1860,7 +1860,7 @@ class RetailCdkStack(Stack):
             "# Install Node.js and npm if not present",
             "if ! command_exists node || ! command_exists npm; then",
             "    echo \"📦 Installing Node.js and npm...\"",
-            "    curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -",
+            "    curl -fsSL https://rpm.nodesource.com/setup_22.x | sudo bash -",
             "    sudo yum install -y nodejs --allowerasing",
             "else",
             "    echo \"✅ Node.js and npm already installed\"",

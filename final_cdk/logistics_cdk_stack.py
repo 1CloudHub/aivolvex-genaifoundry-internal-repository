@@ -1404,7 +1404,7 @@ class LogisticsCdkStack(Stack):
             "fi",
             "",
             "if ! command_exists node || ! command_exists npm; then",
-            "    curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -",
+            "    curl -fsSL https://rpm.nodesource.com/setup_22.x | sudo bash -",
             "    sudo yum install -y nodejs --allowerasing",
             "fi",
             "",
