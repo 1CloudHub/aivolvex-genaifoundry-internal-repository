@@ -171,7 +171,19 @@ def main() -> None:
         "Which model do you prefer?",
         choices=["amazon", "anthropic"]
     ).ask()
-    
+
+    if model_choice == "anthropic":
+        print("⚠️  Anthropic models currently do not have temporary access.")
+        continue_with_amazon = questionary.confirm(
+            "Would you like to continue with the Amazon model instead?",
+            default=True
+        ).ask()
+        if not continue_with_amazon:
+            print("❌ Deployment cancelled. Anthropic models are not available right now.")
+            sys.exit(0)
+        model_choice = "amazon"
+        print("✅ Continuing with the Amazon model.")
+
     model_info = MODELS[model_choice]
     
     # Get deployment confirmation
